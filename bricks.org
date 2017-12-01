@@ -1,0 +1,69 @@
+* Proposal
+** DA-RNN用神经网络做更好性质
+- 之前给您发的那篇在deep net上构建graphical model的论文，可以更好
+  地exact inference laten variables
+
+- 由上面的attention model+graphical model引出的模型可解释性的话题，
+  具体是参考了lime那篇论文
+
+- CNN replace RNN
+
+- To perform time series prediction, we modify these two
+  approaches (encoder-decoder, attention based) by changing the
+  output to be a single scalar value, and use a squared loss as
+  the objective function (as we did for the DA-RNN).
+
+
+- effective predictions
+- easily interpreted
+
+*** flexibility in capturing nonlinear relationships.
+- long-term dependencies
+- select the relevant driving series to make predictions.
+
+
+
+
+*** Exogenous: Better Features
+
+- Hinton 的 capsule net，如果把图像看成时间序列的话，我们能够把时
+  间序列的形态加入模型
+- 
+-
+
+*** DA-RNN evolution line
+
+- encoder-decoder: One problem with encoder-decoder networks is
+  that their performance will dete- riorate rapidly as the length
+  of input sequence increases
+- attention: This is because when multiple driving (exogenous)
+  series are available, the network cannot explicitly select
+  relevant driving series to make predictions.
+
+DA-RNN Pros: In the first stage, we develop a new atten- tion
+mechanism to adaptively extract the relevant driving series at
+each time step by referring to the previous encoder hidden state.
+In the second stage, a temporal attention mech- anism is used to
+select relevant encoder hidden states across all time steps.
+
+- In this way, the DA-RNN can adaptively select the most relevant
+  input features as well as
+- capture the long-term temporal dependencies of a time series
+  appropriately.
+- easy to interpret
+- robust to noisy inputs
+
+
+*** Drawbacks of conventional methods
+- Although the well-known autoregressive moving av- erage (ARMA)
+  model [Whittle, 1951] and its variants [As- teriou and Hall,
+  2011; Brockwell and Davis, 2009] have shown their effectiveness
+  for various real world applications, they cannot model
+  nonlinear relationships and do not dif- ferentiate among the
+  exogenous (driving) input terms
+- substantial effort has been made for time series prediction via
+  kernel methods [Chen et al., 2008], ensemble methods
+  [Bouchachia and Bouchachia, 2008], and Gaussian processes
+  employ a predefined nonlinear form and may not be able to
+  capture the true un- derlying nonlinear relationship
+  appropriately
