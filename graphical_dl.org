@@ -1,0 +1,60 @@
+* Bricks
+** Intuitions
+Latent are easy in lower dim (from video)
+
+Can't write down specific models (don't know good priors), want
+to learn nice organized representation.
+
+NN flexibility. Learn a feature representation so that GMM fix
+well.
+
+As fitting the model, learn a set of features so that in feature
+space, our structured priors work well. Feature transformation.
+
+Video:
+In the time series case: we don't care details about how images
+are rendered which could be some neural nets. But we want all the
+interesting correlations across those video frames. We want to
+explain those correlations through time in terms of a structured
+graphical model representation.
+
+high level representation
+
+*human knowledge -> model (unsupervised learning)*
+
+automatic structured search
+
+** objectives
+see screen shots
+
+** Pros Cons
+Screenshots
+
+Graphical:
+
+Pros:
+- Easy to fit
+- Data efficient
+- Interpretability
+
+Cons:
+
+- limited capability: prior does not fit gaussian 一朵花slides(1:06:56)
+
+NN:
+
+Cons:
+- Generic Inference: SGD ? Learning not inference
+- Don't have explicit representation of data (nice organized
+  representation)
+
+Switching LDS
+
+In the middle of the spectrum
+
+Highly complex patterns of nonlinear dynamics
+
+
+** Basics
+
+Time series is a special case of State Space Models
