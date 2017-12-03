@@ -113,13 +113,13 @@
   % \item Demonstrating both classification and regression problems
   \end{enumerate}
 \item Network architectures with better computational properties
-\item Encoding/Decoding human intepretable representation
-  into/from models
+\item Decoding/Encoding human intepretable representations
+  from/into models
   \begin{enumerate}
-  \item Learning deep neural networks coupled with structured
-    (potentially predefined) latent variable sequence
   \item Approximating deep neural networks' input-output
     relationships using human intepretable models
+  \item Learning deep neural networks coupled with structured
+    (potentially predefined) latent variable sequence
   \end{enumerate}
 \end{enumerate}
 
@@ -160,14 +160,15 @@ Systems~\cite{bar1993estimation} (LDS). However, capabilities of
 approximating non-linear patterns of PGMs are also severely
 suffered from rigid assumptions over priors.
 
-Deep Neural Networks~\cite{goodfellow2016deep} (DNNs) are powerful and flexible models that
-have overwhelming performance on various difficult learning tasks
-such as image classification, visual object recognition, machine
-translation and speech recognition. It can take high dimensional
-data with rich structure as input and scales over large data-set.
-DNNs are usually composed of hierarchical layers which contains
-large amount of latent variables. Non-linearity in the data is
-usually captured by non-linear interactions through those latent
+Deep Neural Networks~\cite{goodfellow2016deep} (DNNs) are
+powerful and flexible models that have outperforming performance
+on various difficult learning tasks such as image classification,
+visual object recognition, machine translation and speech
+recognition. It can take high dimensional data with rich
+structure as input and scales over large data-set. DNNs are
+usually composed of hierarchical layers which contains large
+amount of latent variables. Non-linearity in the data is usually
+captured by non-linear interactions through those latent
 variables. Each of these latent variables normally connected to
 many other variables in adjacent layers. Results of those unique
 distributed representations are that DNNs are extremely flexible
@@ -207,7 +208,21 @@ open.
   \label{fig:en-de}
 \end{figure}
 
-Other than long-term dependencies difficulty, DNNs'
+Other than long-term dependencies difficulty, DNNs contain a very
+large number of latent variables which make the training results
+very hard for a human to interpret~\cite{goodfellow2016deep}.
+Since DNNs are capable of approximating a very large number of
+insignificant correlations between inputs and outputs of the
+training data, there is no way to distinguish the true
+relationships exist in data from suspicious correlations which
+are caused by sampling bias in data
+set~\cite{goodfellow2016deep}. Being able to explain the reasons
+behind such models plays a crucial role in tasks such as model
+comparison and deployment. It could also provide insights into
+the data set and model itself. Thus improving the
+interpretability of DNNs could also be a very interesting topic
+to investigate.
+
 
 \section{Expected Research Contribution}
 \label{sec:contrib}
@@ -215,6 +230,9 @@ Other than long-term dependencies difficulty, DNNs'
 
 \section{Proposed Methodology}
 \label{sec:method}
+
+
+
 
 
 \section{Work Plan}
