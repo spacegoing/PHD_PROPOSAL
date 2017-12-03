@@ -13,6 +13,12 @@
     "narayanaswamy2017learning"
     "brockwell2013time"
     "koller2009probabilistic"
-    "murphy2012machine"))
+    "murphy2012machine"
+    "frigola2014variational"
+    "eddy1996hidden"
+    "bar1993estimation"
+    "goodfellow2016deep"
+    "sutskever2014sequence"
+    "attention"))
  :bibtex)
 

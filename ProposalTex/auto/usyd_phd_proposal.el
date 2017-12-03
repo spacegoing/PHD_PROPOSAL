@@ -2,7 +2,7 @@
  "usyd_phd_proposal"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
-                     '(("geometry" "margin={1.5cm,2cm}") ("fontenc" "T1") ("inputenc" "utf8") ("StyFiles/natbib" "sort" "numbers")))
+                     '(("geometry" "margin={3.5cm,3cm}") ("fontenc" "T1") ("inputenc" "utf8") ("StyFiles/natbib" "sort" "numbers")))
    (TeX-run-style-hooks
     "latex2e"
     "article"
@@ -31,9 +31,9 @@
    (LaTeX-add-labels
     "sec:synop"
     "sec:intro"
+    "fig:en-de"
     "sec:contrib"
-    "sec:method"
-    "NCRA-TIFR")
+    "sec:method")
    (LaTeX-add-environments
     '("vtimeline" LaTeX-env-args ["argument"] 0))
    (LaTeX-add-bibliographies
