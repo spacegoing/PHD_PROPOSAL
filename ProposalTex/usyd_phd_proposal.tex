@@ -296,13 +296,59 @@ attention mechanism in input layers still remains open.
 \subsection{Interpretability}
 \label{sec:interp}
 
+Substantial effort has been made for improving DNNs
+interpretability in recent years. There are mainly three
+different groups of approaches:
 
+\begin{itemize}
+\item Explain local predictions directly
+\item Approximating DNNs using human interpretative models
+\item Joint learning probabilistic graphical models with DNNs
+\end{itemize}
 
+\citename{ribeiro2016should} proposed a Local Interpretative
+Model-agnostic Explanations (LIME) method to interpret arbitrary
+machine learning models directly by explain individual outputs.
+They tried to approximate a human interpretative local estimator
+(Lasso in their case) by sampling around models' outputs and
+explain the reason behind those decisions by observing which
+features (input) are taking most responsibility in the local
+estimator. However, such approaches are limited to providing
+explanations for individual decision. A more challenging task
+would be providing a global insights of models.
 
+Instead of explaining local predictions, \citename{SDT} use the
+DNNs to train a soft decision tree. One main difficulty of such
+model is that it requires exponentially large amount of training
+data with respect to the depth of the tree. However, with
+approximated DNNs in hand, sufficient amount of training data for
+soft decision tree can be provided by labeling unlabeled data
+using DNNs, sampling synthetic unlabeled data using generative
+approach~\cite{goodfellow2014generative} and distilling
+method~\cite{hinton2015distilling}. Such soft decision tree could
+approximate DNNs to a reasonable extent while maintain human
+interpretability for further investigation.
 
-
-
-
+More advanced approaches combines complementary strengths of
+Probabilistic Graphical Models (PGMs) and DNNs. As discussed
+above, PGMs have very easy to understand structures. Other than
+interpretability, they are also easy to fit and data efficient.
+The main drawbacks of PGMs is that the rigid assumptions severely
+limit PGMs capability of approximating non-linear relationship.
+On the contrary, DNNs are highly capable of approximation while
+are data intensive and hard to explain.
+\citename{johnson2016composing} proposed a combination of
+flexible deep learning feature models with structured Bayesian
+priors. They used deep auto-encoders to extract lower
+representation of non-linear observed data and used graphical
+models for latent variables sequence inference. A very efficient
+variational inference algorithm was developed to solve the joint
+learning problem. A very interesting view of their work is that
+other than providing better explanations, they also encoded human
+expert knowledge into DNNs through
+PGMs~\cite{johnson2016composing}. Investigation in this topic
+could provide very interesting insights for both DNNs and PGMs
+researches.
 
 \section{Expected Research Contribution}
 \label{sec:contrib}

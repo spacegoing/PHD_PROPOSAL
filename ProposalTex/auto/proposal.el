@@ -19,6 +19,9 @@
     "bar1993estimation"
     "goodfellow2016deep"
     "sutskever2014sequence"
-    "attention"))
+    "attention"
+    "ribeiro2016should"
+    "goodfellow2014generative"
+    "hinton2015distilling"))
  :bibtex)
 
