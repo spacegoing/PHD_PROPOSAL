@@ -89,9 +89,9 @@
     
     \par} {\huge\bfseries \par}
 	
-	\vspace{2cm} {\Large\itshape Chang Li\par} \vfill
+	\vspace{2cm} {\Large\itshape Chang \textsc{Li}\par} \vfill
 
-  {\Large\itshape Supervisor\par} {\Large\itshape Prof. Dacheng
+  {\Large Supervisor\par} {\Large\itshape Prof. Dacheng
     \textsc{Tao}\par} \vfill
 
 \end{titlepage}
@@ -224,15 +224,88 @@ interpretability of DNNs could also be a very interesting topic
 to investigate.
 
 
-\section{Expected Research Contribution}
-\label{sec:contrib}
-
-
 \section{Proposed Methodology}
 \label{sec:method}
 
+\subsection{Modeling Long-term Dependencies And Feature
+  Selection}
+\label{sec:ltfs}
+
+As discussed in section~\ref{sec:synop}, encoder-decoder networks
+based on RNNs outperform many other statistical machine learning
+models while suffering from short-term memories due to encoding
+global information into a single fixed length variable. One of
+the most popular ways is to introduce ``attention mechanism''
+into encoder-decoder networks~\cite{attention}.
+
+\citename{attention} demonstrated long-term dependencies issue by
+introducing context vectors in the middle of encoder network and
+decoder network (as shown in Figure~\ref{fig:attention}). Instead
+of encoding the global information into a single variable,
+attention mechanism enables encoder network to provide a sequence
+of encoded vectors on which decoder network can do soft-searches.
+As a result, decoder network is able to concentrate on the most
+relevant information represented by a subset of encoded vectors
+of arbitrary length. Thus encoder-decoder networks can have much
+better performance when dealing with long-term dependencies.
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{images/attention.png}
+  \caption{Attention Mechanism}
+  \label{fig:attention}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.3]{images/darnn.png}
+  \caption{Dual-Stage Attention Based RNN}
+  \label{fig:darnn}
+\end{figure}
+
+\citename{qin2017dual} extended \citename{attention}'s work to
+adaptively select most relevant hidden states as well as most
+significant features simultaneously. The developed a dual stage
+RNNs (see Figure~\ref{fig:darnn}). Other than attention vector
+between encoder and decoder layer (so called ``Temporal attention
+Layer'' in Figure~\ref{fig:darnn}(b)), they adaptively weights
+input sequence $x_t^k$ which is the $k$th feature at $t$ step by
+attention $\alpha_t^k$ (see Figure~\ref{fig:darnn}(a)). The input
+attention mechanism is a feed-forward network. Thus the extended
+encoder-decoder network can weight features according to their
+importance while the whole network can still be trained jointly.
+
+One major drawback of RNNs formulation is computationally
+expensive. RNNs usually have a very deep recursive structure. It
+maintains hidden states of the entire past which prevents
+parallel implementation of the algorithm. On the contrary,
+Convolutional Neural Networks (CNNs) have a hierarchical
+structure and can fully exploit the GPU hardware by using
+parallel computing techniques.
+\citename{gehring2017convolutional} attempted to replace RNNs
+with CNNs in sequence modeling task by using a hierarchical
+structure CNNs. They captured correlations in length of $n$
+sequence by applying $\mathcal{O}(\frac{n}{k})$ convolutional
+operations for kernels of width $k$ and constructed both of
+encoder and decoder networks using CNNs. Results of their model
+are slightly better than conventional encoder-decoder
+networks~\cite{attention} on multiple data set but with a huge
+decreasing in training time. However, the question of creating
+attention mechanism in input layers still remains open.
+
+\subsection{Interpretability}
+\label{sec:interp}
 
 
+
+
+
+
+
+
+
+\section{Expected Research Contribution}
+\label{sec:contrib}
 
 
 \section{Work Plan}

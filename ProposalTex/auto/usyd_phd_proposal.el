@@ -32,8 +32,12 @@
     "sec:synop"
     "sec:intro"
     "fig:en-de"
-    "sec:contrib"
-    "sec:method")
+    "sec:method"
+    "sec:ltfs"
+    "fig:attention"
+    "fig:darnn"
+    "sec:interp"
+    "sec:contrib")
    (LaTeX-add-environments
     '("vtimeline" LaTeX-env-args ["argument"] 0))
    (LaTeX-add-bibliographies
