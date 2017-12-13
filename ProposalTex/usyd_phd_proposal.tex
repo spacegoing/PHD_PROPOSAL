@@ -108,13 +108,16 @@
     knowledge and assumptions
   \item Encoding high dimensional input variables adaptively
   \item Discovering long term dependencies of encoded inputs
-  % Capsule
-  \item Novel insights in feature extraction of complex inputs
+  % \item Novel insights in feature extraction of complex inputs
+  % TODO: Capsule Net
+  % TODO: Capsule's Equivalent Problem in RNN
   % \item Demonstrating both classification and regression problems
   \end{enumerate}
 \item Network architectures with better computational properties
+  % TODO: All you need is attention
 \item Decoding/Encoding human intepretable representations
   from/into models
+  % TODO: DARNN_Bilinear
   \begin{enumerate}
   \item Approximating deep neural networks' input-output
     relationships using human intepretable models
@@ -227,11 +230,33 @@ to investigate.
 \section{Proposed Methodology}
 \label{sec:method}
 
+We divide this project into three phases.
+
+To commence we will investigate the mechanism of long-term
+dependencies in time-series and how to model them using deep
+neural networks. We will also investigate optimization algorithms
+which can jointly optimize neural networks together with feature
+selection.
+
+With optimization algorithms in hand, at the second stage we will
+try to extend those algorithms into various network topologies
+such as CNNs and simple feed-forward neural networks. The goal of
+the second stage is to investigate novel network topologies which
+can preserve good approximation performance while having better
+computational properties, such as parallelization.
+
+At the final stage, we will explore a large group of conventional
+machine learning methods (lasso regression, random forest,
+graphical model, etc.) aiming at explaining the learning results
+of neural networks. Outcomes at this stage not only improves the
+interpretability of neural networks but also give insights on how
+to encode expert prior knowledge into neural networks.
+
 \subsection{Modeling Long-term Dependencies And Feature
   Selection}
 \label{sec:ltfs}
 
-As discussed in section~\ref{sec:synop}, encoder-decoder networks
+As discussed in section~\ref{sec:intro}, encoder-decoder networks
 based on RNNs outperform many other statistical machine learning
 models while suffering from short-term memories due to encoding
 global information into a single fixed length variable. One of
@@ -249,6 +274,20 @@ relevant information represented by a subset of encoded vectors
 of arbitrary length. Thus encoder-decoder networks can have much
 better performance when dealing with long-term dependencies.
 
+\citename{qin2017dual} extended \citename{attention}'s work to
+adaptively select most relevant hidden states as well as most
+significant features simultaneously. The developed a dual stage
+RNNs (see Figure~\ref{fig:darnn}). Other than attention vector
+between encoder and decoder layer (so called ``Temporal attention
+Layer'' in Figure~\ref{fig:darnn}(b)), they adaptively weights
+input sequence $x_t^k$ which is the $k$th feature at $t$ step by
+attention $\alpha_t^k$ (see Figure~\ref{fig:darnn}(a)). The input
+attention mechanism is a feed-forward network. Thus the extended
+encoder-decoder network can weight features according to their
+importance while the whole network can still be trained jointly.
+However, their work is focused on regression. We will further
+investigate their methods by extending to classification cases.
+
 \begin{figure}
   \centering
   \includegraphics[scale=0.5]{images/attention.png}
@@ -263,17 +302,8 @@ better performance when dealing with long-term dependencies.
   \label{fig:darnn}
 \end{figure}
 
-\citename{qin2017dual} extended \citename{attention}'s work to
-adaptively select most relevant hidden states as well as most
-significant features simultaneously. The developed a dual stage
-RNNs (see Figure~\ref{fig:darnn}). Other than attention vector
-between encoder and decoder layer (so called ``Temporal attention
-Layer'' in Figure~\ref{fig:darnn}(b)), they adaptively weights
-input sequence $x_t^k$ which is the $k$th feature at $t$ step by
-attention $\alpha_t^k$ (see Figure~\ref{fig:darnn}(a)). The input
-attention mechanism is a feed-forward network. Thus the extended
-encoder-decoder network can weight features according to their
-importance while the whole network can still be trained jointly.
+\subsection{Topologies With Better Computational Properties}
+\label{sec:better_comp}
 
 One major drawback of RNNs formulation is computationally
 expensive. RNNs usually have a very deep recursive structure. It
@@ -290,15 +320,30 @@ operations for kernels of width $k$ and constructed both of
 encoder and decoder networks using CNNs. Results of their model
 are slightly better than conventional encoder-decoder
 networks~\cite{attention} on multiple data set but with a huge
-decreasing in training time. However, the question of creating
-attention mechanism in input layers still remains open.
+decreasing in training time.
+
+Recently, numerous pure attention architecture have been proposed
+and achieved the state-of-the-art results in natural language
+processing problems. \citename{vaswani2017attention} dispensed
+CNNs and RNNs entirely and proposed a self-attention-based model.
+They extends the conventional attention mechanism to a so-called
+Multi-Head Attention (MHA) architecture by allowing each head to
+generate different distributions over encoder output. This novel
+network architecture has very concise topology representation and
+outperforms both RNNs and CNNs based sequence to
+sequence~\cite{vaswani2017attention}.
+
+In this project we plan to further investigate those network
+topologies. Besides, the question of creating attention mechanism
+in input layers (feature selection) in those architectures still
+remains open.
 
 \subsection{Interpretability}
 \label{sec:interp}
 
 Substantial effort has been made for improving DNNs
 interpretability in recent years. There are mainly three
-different groups of approaches:
+different types of approaches:
 
 \begin{itemize}
 \item Explain local predictions directly

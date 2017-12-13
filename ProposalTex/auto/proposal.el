@@ -22,6 +22,7 @@
     "attention"
     "ribeiro2016should"
     "goodfellow2014generative"
-    "hinton2015distilling"))
+    "hinton2015distilling"
+    "vaswani2017attention"))
  :bibtex)
 

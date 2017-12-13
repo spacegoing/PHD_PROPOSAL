@@ -36,6 +36,7 @@
     "sec:ltfs"
     "fig:attention"
     "fig:darnn"
+    "sec:better_comp"
     "sec:interp"
     "sec:contrib")
    (LaTeX-add-environments
