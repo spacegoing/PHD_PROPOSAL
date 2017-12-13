@@ -27,7 +27,8 @@
     "StyFiles/natbibspacing")
    (TeX-add-symbols
     "endlr"
-    "matamp")
+    "matamp"
+    "arraystretch")
    (LaTeX-add-labels
     "sec:synop"
     "sec:intro"
@@ -38,7 +39,7 @@
     "fig:darnn"
     "sec:better_comp"
     "sec:interp"
-    "sec:contrib")
+    "tab:work_plan")
    (LaTeX-add-environments
     '("vtimeline" LaTeX-env-args ["argument"] 0))
    (LaTeX-add-bibliographies

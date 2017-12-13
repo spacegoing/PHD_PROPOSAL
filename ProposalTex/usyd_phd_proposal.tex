@@ -129,6 +129,17 @@
 \section{Synopsis}
 \label{sec:synop}
 
+This project is focused on investigating sequence data learning
+using deep learning networks. We divide this project into three
+phases. We first aim to solve long-term dependencies issues by
+investigating RNNs based encoder-decoder models with attention
+mechanism. Then we will try to generalize those algorithms into
+broader network topologies such as CNNs and feed-forward networks
+to achieve better computational performance. The last goal of
+this project is to improve the interpretability of deep learning
+networks by using conventional human friendly machine learning
+techniques such as lasso regression, random forest and graphical
+models.
 
 \section{Background And Literature Review}
 \label{sec:intro}
@@ -167,42 +178,29 @@ Deep Neural Networks~\cite{goodfellow2016deep} (DNNs) are
 powerful and flexible models that have outperforming performance
 on various difficult learning tasks such as image classification,
 visual object recognition, machine translation and speech
-recognition. It can take high dimensional data with rich
-structure as input and scales over large data-set. DNNs are
-usually composed of hierarchical layers which contains large
-amount of latent variables. Non-linearity in the data is usually
-captured by non-linear interactions through those latent
-variables. Each of these latent variables normally connected to
-many other variables in adjacent layers. Results of those unique
-distributed representations are that DNNs are extremely flexible
-in fixing difficult problems in high dimensional space and have
-very generic learning algorithm (Stochastic Gradient Descent,
-SGD) for various problems. With sufficient training data, DNNs
-usually can get nice approximation of that information in a
-reasonable amount of time~\cite{goodfellow2016deep}.
+recognition. With sufficient training data, DNNs usually can get
+nice approximation of that information in a reasonable amount of
+time~\cite{goodfellow2016deep}.
 
 Despite the powerful capability of approximation, one significant
 limitation of DNNs is that they require fixed dimension of inputs
-and targets. Thus DNNs cannot be applied directly on areas
-without prior knowledge about variables' length or have various
-input length, such as speech recognition and machine translation.
-\citename{sutskever2014sequence} in 2014 demonstrated this
-difficulty as sequence to sequence problems. They introduced an
-encoder-decoder framework based on two Recurrent Neural Networks
-(RNNs) and achieved a very successful result in machine
-translation. The key ideas (as shown in Figure~\ref{fig:en-de})
-behind encoder-decoder networks and its variants are that they
-first encode the whole sentence of words into a single, fixed
-length variable using encoder network. Then a decoder network is
-used to decode that variable and generate translation. They
-enabled the network to take various length of inputs by encoding
-each of them into a single and fixed length variable. One major
-drawback is that ``indeed the performance of a basic
-encoder–decoder deteriorates rapidly as the length of an input
-sentence increases~\cite{attention}''. Since for many sequence
-learning applications there exists many long-term dependencies
-relationships, the question of solving this drawback remains
-open.
+and targets. \citename{sutskever2014sequence} in 2014
+demonstrated this difficulty as sequence to sequence problems.
+They introduced an encoder-decoder framework based on two
+Recurrent Neural Networks (RNNs) and achieved a very successful
+result in machine translation. The key ideas (as shown in
+Figure~\ref{fig:en-de}) behind encoder-decoder networks and its
+variants are that they first encode the whole sentence of words
+into a single, fixed length variable using encoder network. Then
+a decoder network is used to decode that variable and generate
+translation. They enabled the network to take various length of
+inputs by encoding each of them into a single and fixed length
+variable. One major drawback is that ``indeed the performance of
+a basic encoder–decoder deteriorates rapidly as the length of an
+input sentence increases~\cite{attention}''. Since for many
+sequence learning applications there exists many long-term
+dependencies relationships, the question of solving this drawback
+remains open.
 
 \begin{figure}
   \centering
@@ -395,12 +393,48 @@ PGMs~\cite{johnson2016composing}. Investigation in this topic
 could provide very interesting insights for both DNNs and PGMs
 researches.
 
-\section{Expected Research Contribution}
-\label{sec:contrib}
-
-
 \section{Work Plan}
 
+	\begin{table}[H]
+		\centering
+		\label{tab:work_plan}
+		\def\arraystretch{1.5}%  1 is the default, change whatever you need
+		\begin{tabularx}{\textwidth}{|X|l|}
+			\hline
+			\multicolumn{1}{|c|}{\textbf{Key Item}}                                                        & \multicolumn{1}{c|}{\textbf{Date}} \\ \hline
+			Literature review and refine the scope of the project.
+                                                                                                     &
+                                                                                                       \multicolumn{1}{c|}{March
+                                                                                                       -
+                                                                                                       June
+                                                                                                       2017}
+      \\ \hline
+			Re-implement models in section~\ref{sec:ltfs} and section~\ref{sec:better_comp} &
+                                                                                        \multicolumn{1}{c|}{July
+                                                                                        -
+                                                                                        December
+                                                                                        2017}            \\ \hline
+			Implement feature selection mechanism for models in
+      section~\ref{sec:better_comp} & \multicolumn{1}{c|}{January
+                                      - April 2018}          \\ \hline
+			Explore various topologies to achieve better computational
+      performance & \multicolumn{1}{c|}{May - September 2018}             \\ \hline
+			Write up experiment results for conference paper & \multicolumn{1}{c|}{September - December 2018}       \\ \hline
+			Re-implement models in section~\ref{sec:interp} &
+                                                        \multicolumn{1}{c|}{January
+                                                        - April 2019}            \\ \hline
+      Investigating explanations of previous models &
+                                                      \multicolumn{1}{c|}{May - June 2019}                \\ \hline
+			Write up experiment results for conference paper &
+                                                         \multicolumn{1}{c|}{July - October 2019}                \\ \hline
+			Write up thesis & \multicolumn{1}{c|}{November - January 2020}         \\ \hline
+			Draft submission of thesis to supervisor and rework based on feedback                          & \multicolumn{1}{c|}{Early February 2020}              \\ \hline
+			Thesis presentation/defense and submission to assessors. Potentially rework based on feedback  & \multicolumn{1}{c|}{March 2020}      		     \\ \hline
+			Final submission of thesis                                                                     & \multicolumn{1}{c|}{April 2020}		             \\ \hline
+		\end{tabularx}
+		\caption{Estimated work plan}
+	\end{table}
 
+	
 \bibliographystyle{abbrvnat} \bibliography{proposal.bib}
 \end{document}
