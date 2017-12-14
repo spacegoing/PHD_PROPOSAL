@@ -156,51 +156,36 @@ of this proposal is mainly focused on demonstrating those three
 difficulties. 
 
 Despite substantial effort has been made for modeling sequences,
-many of those models are neither unable to approximate non-linear
-relationships nor have rigid assumptions due to the dependency on
+many of those models are either unable to approximate non-linear
+relationships or have rigid assumptions due to the dependency on
 predefined form of prior function. For example, autoregressive
-moving average (ARMA) model~\cite{hibon1997arma} and many of its
-variants~\cite{brockwell2013time} have raised interests because
-of their effectiveness in many real world applications. However,
-those models cannot capturing non-linear relationships.
-Probabilistic Graphical
-Models~\cite{murphy2012machine,koller2009probabilistic} (PGM) are
-very well studied for the past decades. With predefined prior
-distributions from domain knowledge, PGMs are capable to encode
-many sequence relationships such as Gaussian
-Processes~\cite{frigola2014variational}, Hidden Markov
-Models~\cite{eddy1996hidden} (HMM) and Linear Dynamic
-Systems~\cite{bar1993estimation} (LDS). However, capabilities of
-approximating non-linear patterns of PGMs are also severely
+moving average (ARMA) model~\cite{hibon1997arma} cannot capture
+non-linear relationships. Probabilistic Graphical
+Models~\cite{murphy2012machine,koller2009probabilistic} (PGMs)
+are very well studied for the past decades. However, capabilities
+of approximating non-linear patterns of PGMs are also severely
 suffered from rigid assumptions over priors.
 
 Deep Neural Networks~\cite{goodfellow2016deep} (DNNs) are
 powerful and flexible models that have outperforming performance
-on various difficult learning tasks such as image classification,
-visual object recognition, machine translation and speech
-recognition. With sufficient training data, DNNs usually can get
-nice approximation of that information in a reasonable amount of
-time~\cite{goodfellow2016deep}.
-
-Despite the powerful capability of approximation, one significant
-limitation of DNNs is that they require fixed dimension of inputs
-and targets. \citename{sutskever2014sequence} in 2014
-demonstrated this difficulty as sequence to sequence problems.
-They introduced an encoder-decoder framework based on two
-Recurrent Neural Networks (RNNs) and achieved a very successful
-result in machine translation. The key ideas (as shown in
-Figure~\ref{fig:en-de}) behind encoder-decoder networks and its
-variants are that they first encode the whole sentence of words
-into a single, fixed length variable using encoder network. Then
-a decoder network is used to decode that variable and generate
-translation. They enabled the network to take various length of
-inputs by encoding each of them into a single and fixed length
-variable. One major drawback is that ``indeed the performance of
-a basic encoder–decoder deteriorates rapidly as the length of an
-input sentence increases~\cite{attention}''. Since for many
-sequence learning applications there exists many long-term
-dependencies relationships, the question of solving this drawback
-remains open.
+on various difficult learning tasks. Despite the powerful
+capability of approximation, one significant limitation of DNNs
+is that they require fixed dimension of inputs and targets.
+\citename{sutskever2014sequence} in 2014 demonstrated this
+difficulty as sequence to sequence problems. They introduced an
+encoder-decoder framework based on two Recurrent Neural Networks
+(RNNs) and achieved a very successful result in machine
+translation. The key ideas (as shown in Figure~\ref{fig:en-de})
+behind encoder-decoder networks and its variants are that they
+first encode the whole sentence of words into a single, fixed
+length variable using encoder network. Then a decoder network is
+used to decode that variable and generate translation. One major
+drawback is that ``indeed the performance of a basic
+encoder–decoder deteriorates rapidly as the length of an input
+sentence increases~\cite{attention}''. Since for many sequence
+learning applications there exists many long-term dependencies
+relationships, the question of solving this drawback remains
+open.
 
 \begin{figure}
   \centering
@@ -212,17 +197,11 @@ remains open.
 Other than long-term dependencies difficulty, DNNs contain a very
 large number of latent variables which make the training results
 very hard for a human to interpret~\cite{goodfellow2016deep}.
-Since DNNs are capable of approximating a very large number of
-insignificant correlations between inputs and outputs of the
-training data, there is no way to distinguish the true
-relationships exist in data from suspicious correlations which
-are caused by sampling bias in data
-set~\cite{goodfellow2016deep}. Being able to explain the reasons
-behind such models plays a crucial role in tasks such as model
-comparison and deployment. It could also provide insights into
-the data set and model itself. Thus improving the
-interpretability of DNNs could also be a very interesting topic
-to investigate.
+Being able to explain the reasons behind such models plays a
+crucial role in tasks such as model comparison and deployment. It
+could also provide insights into the data set and model itself.
+Thus improving the interpretability of DNNs could also be a very
+interesting topic to investigate.
 
 
 \section{Proposed Methodology}
@@ -274,7 +253,7 @@ better performance when dealing with long-term dependencies.
 
 \citename{qin2017dual} extended \citename{attention}'s work to
 adaptively select most relevant hidden states as well as most
-significant features simultaneously. The developed a dual stage
+significant features simultaneously. They developed a dual stage
 RNNs (see Figure~\ref{fig:darnn}). Other than attention vector
 between encoder and decoder layer (so called ``Temporal attention
 Layer'' in Figure~\ref{fig:darnn}(b)), they adaptively weights
@@ -303,13 +282,12 @@ investigate their methods by extending to classification cases.
 \subsection{Topologies With Better Computational Properties}
 \label{sec:better_comp}
 
-One major drawback of RNNs formulation is computationally
-expensive. RNNs usually have a very deep recursive structure. It
-maintains hidden states of the entire past which prevents
-parallel implementation of the algorithm. On the contrary,
-Convolutional Neural Networks (CNNs) have a hierarchical
-structure and can fully exploit the GPU hardware by using
-parallel computing techniques.
+One major drawback of RNNs is computationally expensive. RNNs
+usually have a very deep recursive structure. It maintains hidden
+states of the entire past which prevents parallel implementation
+of the algorithm. On the contrary, Convolutional Neural Networks
+(CNNs) have a hierarchical structure and can fully exploit the
+GPU hardware by using parallel computing techniques.
 \citename{gehring2017convolutional} attempted to replace RNNs
 with CNNs in sequence modeling task by using a hierarchical
 structure CNNs. They captured correlations in length of $n$
@@ -329,7 +307,7 @@ Multi-Head Attention (MHA) architecture by allowing each head to
 generate different distributions over encoder output. This novel
 network architecture has very concise topology representation and
 outperforms both RNNs and CNNs based sequence to
-sequence~\cite{vaswani2017attention}.
+sequence~\cite{vaswani2017attention} models.
 
 In this project we plan to further investigate those network
 topologies. Besides, the question of creating attention mechanism
@@ -373,13 +351,7 @@ approximate DNNs to a reasonable extent while maintain human
 interpretability for further investigation.
 
 More advanced approaches combines complementary strengths of
-Probabilistic Graphical Models (PGMs) and DNNs. As discussed
-above, PGMs have very easy to understand structures. Other than
-interpretability, they are also easy to fit and data efficient.
-The main drawbacks of PGMs is that the rigid assumptions severely
-limit PGMs capability of approximating non-linear relationship.
-On the contrary, DNNs are highly capable of approximation while
-are data intensive and hard to explain.
+Probabilistic Graphical Models (PGMs) and DNNs.
 \citename{johnson2016composing} proposed a combination of
 flexible deep learning feature models with structured Bayesian
 priors. They used deep auto-encoders to extract lower
