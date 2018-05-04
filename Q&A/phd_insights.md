@@ -1,0 +1,4 @@
+- GA DNN
+- Online Learning
+- 1 and 2: NN topology
+- Attention Equilibrium FNN replace CNN RNN
